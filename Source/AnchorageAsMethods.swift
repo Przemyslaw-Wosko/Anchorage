@@ -36,31 +36,31 @@
 // search: [a-w].*Anchor == (.*)Anchor.*
 // replace: constraint\($1, $2\)
 
-@discardableResult public func constraint <T: BinaryFloatingPoint>(_ lhs: NSLayoutDimension, _ rhs: T) -> NSLayoutConstraint {
+@discardableResult public func constrain <T: BinaryFloatingPoint>(_ lhs: NSLayoutDimension, _ rhs: T) -> NSLayoutConstraint {
     return finalize(constraint: lhs.constraint(equalToConstant: CGFloat(rhs)))
 }
 
-@discardableResult public func constraint (_ lhs: NSLayoutXAxisAnchor, _ rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
+@discardableResult public func constrain (_ lhs: NSLayoutXAxisAnchor, _ rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
     return finalize(constraint: lhs.constraint(equalTo: rhs))
 }
 
-@discardableResult public func constraint (_ lhs: NSLayoutYAxisAnchor, _ rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
+@discardableResult public func constrain (_ lhs: NSLayoutYAxisAnchor, _ rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
     return finalize(constraint: lhs.constraint(equalTo: rhs))
 }
 
-@discardableResult public func constraint (_ lhs: NSLayoutDimension, _ rhs: NSLayoutDimension) -> NSLayoutConstraint {
+@discardableResult public func constrain (_ lhs: NSLayoutDimension, _ rhs: NSLayoutDimension) -> NSLayoutConstraint {
     return finalize(constraint: lhs.constraint(equalTo: rhs))
 }
 
-@discardableResult public func constraint (_ lhs: NSLayoutXAxisAnchor, _ rhs: LayoutExpression<NSLayoutXAxisAnchor, CGFloat>) -> NSLayoutConstraint {
+@discardableResult public func constrain (_ lhs: NSLayoutXAxisAnchor, _ rhs: LayoutExpression<NSLayoutXAxisAnchor, CGFloat>) -> NSLayoutConstraint {
     return finalize(constraint: lhs.constraint(equalTo: rhs.anchor!, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
 }
 
-@discardableResult public func constraint (_ lhs: NSLayoutYAxisAnchor, _ rhs: LayoutExpression<NSLayoutYAxisAnchor, CGFloat>) -> NSLayoutConstraint {
+@discardableResult public func constrain (_ lhs: NSLayoutYAxisAnchor, _ rhs: LayoutExpression<NSLayoutYAxisAnchor, CGFloat>) -> NSLayoutConstraint {
     return finalize(constraint: lhs.constraint(equalTo: rhs.anchor!, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
 }
 
-@discardableResult public func constraint (_ lhs: NSLayoutDimension, _ rhs: LayoutExpression<NSLayoutDimension, CGFloat>) -> NSLayoutConstraint {
+@discardableResult public func constrain (_ lhs: NSLayoutDimension, _ rhs: LayoutExpression<NSLayoutDimension, CGFloat>) -> NSLayoutConstraint {
     if let anchor = rhs.anchor {
         return finalize(constraint: lhs.constraint(equalTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
     }
@@ -69,31 +69,31 @@
     }
 }
 
-@discardableResult public func constraint (_ lhs: EdgeAnchors, _ rhs: EdgeAnchors) -> ConstraintGroup {
+@discardableResult public func constrain (_ lhs: EdgeAnchors, _ rhs: EdgeAnchors) -> ConstraintGroup {
     return lhs.finalize(constraintsEqualToEdges: rhs)
 }
 
-@discardableResult public func constraint (_ lhs: EdgeAnchors, _ rhs: LayoutExpression<EdgeAnchors, CGFloat>) -> ConstraintGroup {
+@discardableResult public func constrain (_ lhs: EdgeAnchors, _ rhs: LayoutExpression<EdgeAnchors, CGFloat>) -> ConstraintGroup {
     return lhs.finalize(constraintsEqualToEdges: rhs.anchor, constant: rhs.constant, priority: rhs.priority)
 }
 
-@discardableResult public func constraint (_ lhs: EdgeAnchors, _ rhs: LayoutExpression<EdgeAnchors, EdgeInsets>) -> ConstraintGroup {
+@discardableResult public func constrain (_ lhs: EdgeAnchors, _ rhs: LayoutExpression<EdgeAnchors, EdgeInsets>) -> ConstraintGroup {
     return lhs.finalize(constraintsEqualToEdges: rhs.anchor, insets: rhs.constant, priority: rhs.priority)
 }
 
-@discardableResult public func constraint <T, U>(_ lhs: AnchorPair<T, U>, _ rhs: AnchorPair<T, U>) -> ConstraintPair {
+@discardableResult public func constrain <T, U>(_ lhs: AnchorPair<T, U>, _ rhs: AnchorPair<T, U>) -> ConstraintPair {
     return lhs.finalize(constraintsEqualToEdges: rhs)
 }
 
-@discardableResult public func constraint <T, U>(_ lhs: AnchorPair<T, U>, _ rhs: LayoutExpression<AnchorPair<T, U>, CGFloat>) -> ConstraintPair {
+@discardableResult public func constrain <T, U>(_ lhs: AnchorPair<T, U>, _ rhs: LayoutExpression<AnchorPair<T, U>, CGFloat>) -> ConstraintPair {
     return lhs.finalize(constraintsEqualToEdges: rhs.anchor, constant: rhs.constant, priority: rhs.priority)
 }
 
-@discardableResult public func constraint (_ lhs: AnchorPair<NSLayoutDimension, NSLayoutDimension>, _ rhs: CGSize) -> ConstraintPair {
+@discardableResult public func constrain (_ lhs: AnchorPair<NSLayoutDimension, NSLayoutDimension>, _ rhs: CGSize) -> ConstraintPair {
     return lhs.finalize(constraintsEqualToConstant: rhs)
 }
 
-@discardableResult public func constraint (_ lhs: AnchorPair<NSLayoutDimension, NSLayoutDimension>, _ rhs: LayoutExpression<AnchorPair<NSLayoutDimension, NSLayoutDimension>, CGSize>) -> ConstraintPair {
+@discardableResult public func constrain (_ lhs: AnchorPair<NSLayoutDimension, NSLayoutDimension>, _ rhs: LayoutExpression<AnchorPair<NSLayoutDimension, NSLayoutDimension>, CGSize>) -> ConstraintPair {
     return lhs.finalize(constraintsEqualToConstant: rhs.constant, priority: rhs.priority)
 }
 
